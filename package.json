@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "light-browser.helloWorld",
-        "title": "Hello World"
+        "command": "light-browser.open",
+        "title": "Open light-browser"
       }
     ]
   },

@@ -1,0 +1,5 @@
+{
+    "desc.iframe.open": "打开一个带有iframe的网页",
+    "desc.default.open": "使用默认方式打开",
+    "desc.showStatusBarItem": "是否显示iBrowser状态栏项目。"
+}

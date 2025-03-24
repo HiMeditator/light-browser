@@ -1,0 +1,5 @@
+{
+    "desc.iframe.open": "iframeを含むウェブページを開く",
+    "desc.default.open": "デフォルトのアプリで開く",
+    "desc.showStatusBarItem": "iBrowserステータスバー項目を表示するかどうか。"
+}

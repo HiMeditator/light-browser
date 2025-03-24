@@ -1,0 +1,5 @@
+{
+    "desc.iframe.open": "Open a web page with iframe",
+    "desc.default.open": "Open with default application",
+    "desc.showStatusBarItem": "Whether to show the iBrowser status bar item."
+}

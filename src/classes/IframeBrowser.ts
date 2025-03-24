@@ -54,7 +54,7 @@ export class IframeBrowser {
 
         htmlContent = htmlContent.replace('{{nav_url}}', this.target_url);
         htmlContent = htmlContent.replace('{{iframe_url}}', this.target_url);
-        console.log(htmlContent);
+        // console.log(htmlContent);
         return htmlContent;
     }
 }

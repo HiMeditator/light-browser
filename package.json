@@ -1,21 +1,64 @@
 {
   "name": "light-browser",
-  "displayName": "light-browser",
-  "description": "Browsing web pages in IDE.",
+  "displayName": "Light Browser (Open with default)",
+  "publisher": "himeditator",
+  "description": "Opening files with the default application or browsing web pages via iframe in IDE.",
+  "icon": "assets/icon/light-browser.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiMeditator/light-browser"
+  },
+  "license": "MIT",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.98.0"
+    "vscode": "^1.90.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "galleryBanner": {
+    "color": "#1A1A1A",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "light-browser.open",
-        "title": "Open light-browser"
+        "command": "light-browser.iframe",
+        "title": "%desc.iframe.open%"
+      },
+      {
+        "command": "light-browser.default",
+        "title": "%desc.default.open%"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "light-browser.default",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "light-browser.default",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration":[
+      {
+        "title": "Light Browser",
+        "properties": {
+          "lightBrowser.showStatusBarItem": {
+            "type": "boolean",
+            "description": "%desc.showStatusBarItem%",
+            "default": true
+          }
+        }
       }
     ]
   },
@@ -31,7 +74,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.98.0",
+    "@types/vscode": "^1.90.0",
     "@types/mocha": "^10.0.9",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^8.10.0",

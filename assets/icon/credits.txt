@@ -2,7 +2,7 @@
 
 ## CC BY 4.0 License
 The following icons are used under CC BY 4.0 license:
-1. light-browser.ico
+1. light-browser.png
 
 Source:
-- https://icon-icons.com/zh/users/jU68e8AK4V9vJWDuIDOsp/icon-sets/
+- https://icon-icons.com/en/pack/Duetone/2064

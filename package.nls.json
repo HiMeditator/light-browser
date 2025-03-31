@@ -1,5 +1,7 @@
 {
     "desc.iframe.open": "Open a web page with iframe",
     "desc.default.open": "Open with default application",
-    "desc.showStatusBarItem": "Whether to show the iBrowser status bar item."
+    "desc.showStatusBarItem": "Whether to show the iBrowser status bar item.",
+    "desc.openBrowser": "For `html` files, select the default browser to open.",
+    "desc.defaultMainPage": "The default page to open when the iBrowser is activated."
 }

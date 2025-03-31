@@ -1,5 +1,7 @@
 {
     "desc.iframe.open": "打开一个带有iframe的网页",
     "desc.default.open": "使用默认方式打开",
-    "desc.showStatusBarItem": "是否显示iBrowser状态栏项目。"
+    "desc.showStatusBarItem": "是否显示iBrowser状态栏项目。",
+    "desc.openBrowser": "对于 `html` 文件，选择默认的打开浏览器。",
+    "desc.defaultMainPage": "iBrowser 激活时默认打开的页面。"
 }

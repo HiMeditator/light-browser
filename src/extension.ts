@@ -1,9 +1,8 @@
 import * as vscode from 'vscode';
-import { LangDict } from './classes/LangDict'
+import { LangDict } from './classes/LangDict';
 import { IframeBrowser } from './classes/IframeBrowser';
 
 export function activate(context: vscode.ExtensionContext) {
-    const config = vscode.workspace.getConfiguration('lightBrowser');
     LangDict.instance(context.extensionUri);
 
     const iframeOpenBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
@@ -11,6 +10,8 @@ export function activate(context: vscode.ExtensionContext) {
     iframeOpenBar.text = 'iBrowser';
     iframeOpenBar.tooltip = LangDict.get('desc.iframe.open');
     context.subscriptions.push(iframeOpenBar);
+
+    const config = vscode.workspace.getConfiguration('lightBrowser');
     if(config.get<boolean>('showStatusBarItem')){
         iframeOpenBar.show();
     }
@@ -18,14 +19,30 @@ export function activate(context: vscode.ExtensionContext) {
         iframeOpenBar.hide();
     }
 
-    const defaultOpen = vscode.commands.registerCommand('light-browser.default', (path) => {
-        const file = vscode.Uri.file(path.fsPath).with({scheme: 'file'});
-        vscode.env.openExternal(file);
+    const defaultOpen = vscode.commands.registerCommand('light-browser.default', async (path) => {
+        const filePath = path.fsPath;
+        const fileUri = vscode.Uri.file(path.fsPath);
+        const _config = vscode.workspace.getConfiguration('lightBrowser');
+        const browser = _config.get<string>('openBrowser') || 'default';
+        if(filePath.endsWith('.html') && browser !== 'default'){
+            const openModule = await import('open');
+            const open = openModule.default;
+            const options = {app: {name: browser}};
+            open(filePath, options);
+        }
+        else{
+            vscode.env.openExternal(fileUri);
+        }
     });
     context.subscriptions.push(defaultOpen);
 
     const iframeOpen = vscode.commands.registerCommand('light-browser.iframe', () => {
-        new IframeBrowser(context.extensionUri);
+        const _config = vscode.workspace.getConfiguration('lightBrowser');
+        let url = _config.get<string>('defaultMainPage') || 'https://www.example.com';
+        if(!url.startsWith('http://') && !url.startsWith('https://')){
+            url = 'https://' + url;
+        }
+        new IframeBrowser(context.extensionUri, url);
     });
     context.subscriptions.push(iframeOpen);
 

@@ -6,7 +6,7 @@ export class IframeBrowser {
     public panel: vscode.WebviewPanel;
     constructor(
         public extensionUri: vscode.Uri,
-        public target_url: string = 'https://www.example.com'
+        public target_url: string
     ) {
         IframeBrowser.count += 1;
         this.panel = vscode.window.createWebviewPanel(
@@ -26,12 +26,26 @@ export class IframeBrowser {
         this.listenMessages();
     }
 
+    public async openUrl(url: string) {
+        const _config = vscode.workspace.getConfiguration('lightBrowser');
+        const browser = _config.get<string>('openBrowser') || 'default';
+        const openModule = await import('open');
+        const open = openModule.default;
+        if(browser === 'default'){
+            open(url);
+        }
+        else{
+            const options = {app: {name: browser}};
+            open(url, options);
+        }
+    }
+
     public listenMessages() {
         this.panel.webview.onDidReceiveMessage(message => {
             console.log(message);
             switch (message.command) {
                 case 'goto.browser':
-                    vscode.env.openExternal(vscode.Uri.parse(message.url));
+                    this.openUrl(message.url);
                     break;
             }
         });
